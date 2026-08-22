@@ -9,27 +9,41 @@
 </head>
 <body>
 
+<!-- ============================================================ -->
+<!-- 主容器 -->
+<!-- ============================================================ -->
 <div class="app-container">
 
-    <!-- ===== 组件：Hero 图片背景 + 标题浮层 ===== -->
+    <!-- ========================================================== -->
+    <!-- 组件1：Hero 图片背景 -->
+    <!-- ========================================================== -->
     <div class="hero-section">
         <div class="hero-image">
             <img src="./photo/东区打印海报.jpg" alt="订单上传背景" class="img2">
         </div>
-        
+        <!-- 注意：渐变遮罩由 CSS ::after 实现，不需要额外 HTML -->
     </div>
 
-    <!-- ===== 组件：欢迎卡片 ===== -->
-     <div class="welcome-section-hight">
-            <div class="welcome-section-hight-font">免费配送|请写好备注送达地点</div>
+    <!-- ========================================================== -->
+    <!-- 组件2：欢迎卡片 -->
+    <!-- ========================================================== -->
+    <div class="welcome">
+        <!-- 顶部小标签：免费配送提示 -->
+        <div class="welcome-section-hight">
+            <div class="welcome-section-hight-font">免费配送 | 请写好备注送达地点</div>
         </div>
-    <div class="welcome-section">
-        <div class="greeting">📤 文件打印</div>
-        <div class="sub">这是我们自己做的网页如果不想使用的话可以直接添加微信发打印内容</div>
+        <!-- 主欢迎区 -->
+        <div class="welcome-section">
+            <div class="greeting">📤 文件打印</div>
+            <div class="sub">这是我们自己做的网页，如果不想使用的话可以直接添加微信发打印内容</div>
+        </div>
     </div>
 
-    <!-- ===== 组件：主操作按钮 ===== -->
+    <!-- ========================================================== -->
+    <!-- 组件3：主操作按钮（大按钮） -->
+    <!-- ========================================================== -->
     <div class="main-actions">
+        <!-- 上传文件按钮：跳转到上传页面 -->
         <a href="./upload.html" class="action-btn primary">
             <div class="left">
                 <div class="icon">📤</div>
@@ -40,6 +54,7 @@
             </div>
             <div class="arrow">›</div>
         </a>
+        <!-- 管理后台按钮（已注释，如需启用取消注释即可） -->
         <!-- <a href="./admin.html" class="action-btn">
             <div class="left">
                 <div class="icon">📊</div>
@@ -52,67 +67,147 @@
         </a> -->
     </div>
 
-    <!-- ===== 组件：快捷卡片 ===== -->
+    <!-- ========================================================== -->
+    <!-- 组件4：快捷卡片（四宫格） -->
+    <!-- ========================================================== -->
     <div class="quick-section">
+
+        <!-- 卡片1：快速上传 → 跳转上传页 -->
         <a href="./upload.html" class="quick-card highlight">
             <span class="icon">📎</span>
             <div class="title">快速上传</div>
             <div class="desc">立即提交文件</div>
         </a>
-        <a href="/admin" class="quick-card">
-            <span class="icon">📋</span>
+
+        <!-- 卡片2：管理订单 → 弹窗显示客服电话 -->
+        <a href="javascript:void(0)" class="quick-card" onclick="showServiceInfo()">
+            <span class="icon">📞</span>
             <div class="title">管理订单</div>
             <div class="desc">查看/处理订单</div>
         </a>
+
+        <!-- 卡片3：查看价格 → 弹窗显示价格图片 -->
         <a href="javascript:void(0)" class="quick-card" onclick="showPriceInfo()">
             <span class="icon">💰</span>
             <div class="title">查看价格</div>
             <div class="desc">收费标准说明</div>
         </a>
+
+        <!-- 卡片4：使用帮助 → 弹窗显示操作指南 -->
         <a href="javascript:void(0)" class="quick-card" onclick="showHelpInfo()">
             <span class="icon">❓</span>
             <div class="title">使用帮助</div>
             <div class="desc">操作指南</div>
         </a>
+
     </div>
 
-    <!-- Toast 容器 -->
+    <!-- Toast 提示容器：用于显示临时提示信息 -->
     <div class="toast" id="toast"></div>
+
 </div>
-    <!-- ===== 价格图片弹窗 ===== -->
-    <div class="modal-overlay" id="priceModal" onclick="closePriceModal()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closePriceModal()">✕</button>
-            <img src="./photo/价格.jpg" alt="价格表" class="modal-image">
+<!-- ===== app-container 结束 ===== -->
+
+
+<!-- ============================================================ -->
+<!-- 弹窗区域（所有弹窗放在主容器外面，以免受容器样式影响） -->
+<!-- ============================================================ -->
+
+<!-- ========================================================== -->
+<!-- 弹窗1：价格图片弹窗 -->
+<!-- ========================================================== -->
+<div class="modal-overlay" id="priceModal" onclick="closePriceModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <!-- 关闭按钮 -->
+        <button class="modal-close" onclick="closePriceModal()">✕</button>
+        <!-- 价格图片 -->
+        <img src="./photo/价格.jpg" alt="价格表" class="modal-image">
+    </div>
+</div>
+
+<!-- ========================================================== -->
+<!-- 弹窗2：管理订单弹窗（客服电话） -->
+<!-- ========================================================== -->
+<div class="modal-overlay" id="serviceModal" onclick="closeServiceModal()">
+    <div class="modal-content" onclick="event.stopPropagation()" style="max-width: 360px; padding: 30px 24px; text-align: center; border-radius: 20px;">
+        <!-- 关闭按钮 -->
+        <button class="modal-close" onclick="closeServiceModal()">✕</button>
+
+        <!-- 电话图标 -->
+        <div style="font-size: 52px; margin-bottom: 8px;">📞</div>
+
+        <!-- 标题 -->
+        <h2 style="font-size: 20px; color: #0b1e33; margin-bottom: 4px;">管理订单</h2>
+
+        <!-- 副标题 -->
+        <p style="font-size: 14px; color: #6b7d96; margin-bottom: 16px;">订单问题请联系客服</p>
+
+        <!-- 电话号码（手机点击可自动拨号） -->
+        <a href="tel:19030363493" style="display: block; font-size: 30px; font-weight: 700; color: #2a6df4; text-decoration: none; letter-spacing: 2px; padding: 12px 0; background: #f2f7ff; border-radius: 12px; margin-bottom: 12px;">
+            19030363493
+        </a>
+
+        <!-- 工作时间 -->
+        <div style="font-size: 13px; color: #6b7d96; line-height: 1.8;">
+            <div>⏰ 工作时间：周一至周五 9:00-18:00</div>
         </div>
     </div>
-
-    <!-- Toast 容器 -->
-    <div class="toast" id="toast"></div>
 </div>
-<!-- ===== 组件：底部导航 ===== -->
+
+<!-- ========================================================== -->
+<!-- 弹窗3：使用帮助弹窗（文字版操作指南） -->
+<!-- ========================================================== -->
+<div class="modal-overlay" id="helpModal" onclick="closeHelpModal()">
+    <div class="modal-content" onclick="event.stopPropagation()" style="max-width: 360px; padding: 30px 24px; text-align: center; border-radius: 20px;">
+        <!-- 关闭按钮 -->
+        <button class="modal-close" onclick="closeHelpModal()">✕</button>
+
+        <!-- 图标 -->
+        <div style="font-size: 52px; margin-bottom: 8px;">📖</div>
+
+        <!-- 标题 -->
+        <h2 style="font-size: 20px; color: #0b1e33; margin-bottom: 12px;">使用帮助</h2>
+
+        <!-- 操作步骤列表 -->
+        <div style="text-align: left; font-size: 14px; color: #4a5a72; line-height: 2.2; padding: 0 8px;">
+            <div>1️⃣ 点击「快速上传」提交文件</div>
+            <div>2️⃣ 填写微信号方便联系</div>
+            <div>3️⃣ 支持 Word、PDF、图片等格式</div>
+            <div>4️⃣ 如有问题，联系客服 📞</div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- 组件5：底部导航栏（固定在页面底部） -->
+<!-- ============================================================ -->
 <div class="bottom-nav">
+    <!-- 首页（当前激活） -->
     <a href="/">
         <div class="nav-item active">
             <span class="icon">🏠</span>
             <span>首页</span>
         </div>
     </a>
+    <!-- 上传 -->
     <a href="./upload.html">
         <div class="nav-item">
             <span class="icon">📤</span>
             <span>上传</span>
         </div>
     </a>
-    <a href="/admin">
+    <!-- 管理（已注释，如需启用取消注释） -->
+    <!-- <a href="/admin">
         <div class="nav-item">
             <span class="icon">📊</span>
             <span>管理</span>
         </div>
-    </a>
+    </a> -->
 </div>
 
 <!-- 引入外部 JavaScript -->
 <script src="./js/homeapp.js"></script>
+
 </body>
 </html>

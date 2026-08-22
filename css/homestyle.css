@@ -36,6 +36,7 @@ body {
     background: #eef3fc;
     height: 200px; 
     margin-left: -18px;
+    margin-bottom: 0;
 }
 
 .hero-image {
@@ -63,7 +64,12 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, #ffffff 60%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(to top,
+        #ffffff 60%,                  /* ① 底部：纯白（完全遮盖） */
+        #ffffff 40%,                 /* ② 40% 位置：依然纯白 */
+        rgba(255, 255, 255, 0) 65%,  /* ③ 65% 位置：开始变透明 */
+        rgba(255, 255, 255, 0) 100%  /* ④ 顶部：完全透明（图片清晰） */
+    );
     pointer-events: none;
     border-radius: 0 0 20px 20px;
 }
@@ -125,12 +131,22 @@ body {
 }
 
 /* ---------- 组件：欢迎卡片 ---------- */
+.welcome{
+    /* 边框 */
+    border: 2px solid #000000;      /* 宽度 样式 颜色 */
+    
+    /* 阴影 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 12px 12px 10px 10px;
+    margin-bottom: 20px;
+}
+
 .welcome-section {
-    background: linear-gradient(135deg, #1f3a6b 0%, #2a6df4 100%);
+    background: #ffffff 100%;
     border-radius: 0 0 10px 10px;
     padding: 20px 24px 20px 20px;
     margin-bottom: 20px;
-    color: white;
+    color: rgb(0, 0, 0);
     margin-top: 0px;
 }
 
