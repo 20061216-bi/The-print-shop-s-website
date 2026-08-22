@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>订单上传系统</title>
+    <!-- 引入外部 CSS -->
+    <link rel="stylesheet" href="./css/homestyle.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <!-- ===== 组件：Hero 图片背景 + 标题浮层 ===== -->
+    <div class="hero-section">
+        <div class="hero-image">
+            <img src="./photo/东区打印海报.png" alt="订单上传背景">
+        </div>
+        
+    </div>
+
+    <!-- ===== 组件：欢迎卡片 ===== -->
+     <div class="welcome-section-hight">
+            <div class="welcome-section-hight-font">免费配送|请写好备注送达地点</div>
+        </div>
+    <div class="welcome-section">
+        <div class="greeting">📤 文件打印</div>
+        <div class="sub">这是我们自己做的网页如果不想使用的话可以直接添加微信发打印内容</div>
+    </div>
+
+    <!-- ===== 组件：主操作按钮 ===== -->
+    <div class="main-actions">
+        <a href="./upload.html" class="action-btn primary">
+            <div class="left">
+                <div class="icon">📤</div>
+                <div class="info">
+                    <div class="title">上传文件</div>
+                    <div class="desc">支持 Word、PPT、Excel、PDF、图片等</div>
+                </div>
+            </div>
+            <div class="arrow">›</div>
+        </a>
+        <!-- <a href="./admin.html" class="action-btn">
+            <div class="left">
+                <div class="icon">📊</div>
+                <div class="info">
+                    <div class="title">管理后台</div>
+                    <div class="desc">查看所有订单和文件</div>
+                </div>
+            </div>
+            <div class="arrow">›</div>
+        </a> -->
+    </div>
+
+    <!-- ===== 组件：快捷卡片 ===== -->
+    <div class="quick-section">
+        <a href="./upload.html" class="quick-card highlight">
+            <span class="icon">📎</span>
+            <div class="title">快速上传</div>
+            <div class="desc">立即提交文件</div>
+        </a>
+        <a href="/admin" class="quick-card">
+            <span class="icon">📋</span>
+            <div class="title">管理订单</div>
+            <div class="desc">查看/处理订单</div>
+        </a>
+        <a href="javascript:void(0)" class="quick-card" onclick="showPriceInfo()">
+            <span class="icon">💰</span>
+            <div class="title">查看价格</div>
+            <div class="desc">收费标准说明</div>
+        </a>
+        <a href="javascript:void(0)" class="quick-card" onclick="showHelpInfo()">
+            <span class="icon">❓</span>
+            <div class="title">使用帮助</div>
+            <div class="desc">操作指南</div>
+        </a>
+    </div>
+
+    <!-- Toast 容器 -->
+    <div class="toast" id="toast"></div>
+</div>
+    <!-- ===== 价格图片弹窗 ===== -->
+    <div class="modal-overlay" id="priceModal" onclick="closePriceModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closePriceModal()">✕</button>
+            <img src="./photo/价格.jpg" alt="价格表" class="modal-image">
+        </div>
+    </div>
+
+    <!-- Toast 容器 -->
+    <div class="toast" id="toast"></div>
+</div>
+<!-- ===== 组件：底部导航 ===== -->
+<div class="bottom-nav">
+    <a href="/">
+        <div class="nav-item active">
+            <span class="icon">🏠</span>
+            <span>首页</span>
+        </div>
+    </a>
+    <a href="./upload.html">
+        <div class="nav-item">
+            <span class="icon">📤</span>
+            <span>上传</span>
+        </div>
+    </a>
+    <a href="/admin">
+        <div class="nav-item">
+            <span class="icon">📊</span>
+            <span>管理</span>
+        </div>
+    </a>
+</div>
+
+<!-- 引入外部 JavaScript -->
+<script src="./js/homeapp.js"></script>
+</body>
+</html>
