@@ -35,7 +35,7 @@ body {
     overflow: hidden;
     margin: 0 auto 12px auto;       /* ✅ 居中，去掉负边距 */
     background: #eef3fc;
-    border-radius: 0 0 20px 20px;
+    border-radius: 0;
 }
 
 .hero-image {
@@ -43,7 +43,7 @@ body {
     width: 100%;
     height: 100%;                   /* ✅ 跟随父容器高度 */
     overflow: hidden;
-    border-radius: 20px;
+    border-radius: 0;
 }
 
 .hero-image img {
@@ -63,12 +63,12 @@ body {
     height: 100%;
     background: linear-gradient(to top,
         #ffffff 0%,
-        #ffffff 30%,
-        rgba(255, 255, 255, 0) 60%,
+        #ffffff 10%,
+        rgba(255, 255, 255, 0) 50%,
         rgba(255, 255, 255, 0) 100%
     );
     pointer-events: none;
-    border-radius: 20px;
+    border-radius: 0;
 }
 
 /* 标题浮层 —— 位于渐变底部 */
